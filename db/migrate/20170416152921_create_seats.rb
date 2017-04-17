@@ -5,6 +5,8 @@ class CreateSeats < ActiveRecord::Migration[5.1]
       t.integer :num
 
       t.timestamps
+
+      t.index [ :class_room_id, :num ], unique: true
     end
   end
 end
