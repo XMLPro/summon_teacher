@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   get   'member', to: 'member#index'
   get   'member/register', to: 'member#register'
   post  'member/register', to: 'member#register'
+  get   'summon', to: 'summon#index'
+  mount ActionCable.server => '/cable'
 end
