@@ -1,0 +1,6 @@
+<% if session['seat_id'] %>
+  <%= session['seat_id']%>
+  <%= link_to "再登録", controller: "member", action: "register" %>
+<% else %>
+  <%= link_to "登録", controller: "member", action: "register" %>
+<% end %>
