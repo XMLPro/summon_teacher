@@ -1,6 +1,13 @@
 <% if session['seat_id'] %>
   <%= session['seat_id']%>
+  <input type='button' id='send' value='召喚' onClick='speak()'>
   <%= link_to "再登録", controller: "member", action: "register" %>
 <% else %>
   <%= link_to "登録", controller: "member", action: "register" %>
 <% end %>
+
+<script>
+  function speak(){
+    App.summon.summon(<%= session['seat_id']%>);
+  }
+</script> 
