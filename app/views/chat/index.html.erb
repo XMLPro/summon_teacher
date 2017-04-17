@@ -1,0 +1,14 @@
+<input type='text' id='chat-text'>
+<input type='button' id='send' value='送信' onClick='speak()'>
+
+<div id='chats'>
+</div>
+
+<script>
+function speak(){
+    text =  document.getElementById('chat-text');
+    if (text.value !== ''){
+        App.chat.speech(text.value);
+    }
+}
+</script>
