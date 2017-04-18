@@ -1,7 +1,11 @@
-<% if @error %>
-    <li><%= @error %></li>
-<% end %>
-<%= form_tag('/member/register') do %>
-  <%= text_field :seat, :num %>
-  <%= submit_tag("登録") %>
-<% end %>
+<%= render partial: 'shared/header', locals: {title: '席登録'} %>
+
+<div class='container'>
+  <% if @error %>
+      <li><%= @error %></li>
+  <% end %>
+  <%= form_tag('register') do %>
+    <%= text_field :seat, :num %>
+    <%= submit_tag("登録") %>
+  <% end %>
+</div>
