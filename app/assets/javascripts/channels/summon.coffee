@@ -10,11 +10,11 @@ App.summon = App.cable.subscriptions.create "SummonChannel",
     calls = document.getElementById "calls"
     call = document.createElement('div')
     if (calls != null)
-      call.innerHTML = data['seat_id'] + 'の人が呼んでいます'
+      call.innerHTML = data['position'] + 'の人が呼んでいます'
       calls.appendChild call
       if (teach_flag)
-        alert data['seat_id'] + 'の人が呼んでいます'
+        alert data['position'] + 'の人が呼んでいます'
 
 
-  summon: (seat_id)->
-    @perform 'summon', seat_id: seat_id
+  summon: (position)->
+    @perform 'summon', position: position

@@ -14,6 +14,6 @@ room_files.each do |room_file|
     class_room = ClassRoom.find_or_create_by(name: room_name)
     
     CSV.foreach(room_file) do |row|
-        seat = class_room.seats.find_or_create_by(num: row[0])
+        seat = class_room.seats.find_or_create_by(num: row[0], position: row[1])
     end
 end
