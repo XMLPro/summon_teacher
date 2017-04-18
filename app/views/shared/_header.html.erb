@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarEexample">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">SummonTeacher</a>
+		</div>
+		
+		<div class="collapse navbar-collapse" id="navbarEexample">
+			<ul class="nav navbar-nav">
+                <% if title == 'ホーム' %>
+                    <li class="active">
+                <% else %>
+                    <li>
+                <% end %>
+				<a href="/">ホーム</a></li>
+                <% if title == 'チャット' %>
+                    <li class="active">
+                <% else %>
+                    <li>
+                <% end %>
+                <a href="/chat">チャット</a></li>
+                <% if title == '席登録' %>
+                    <li class="active">
+                <% else %>
+                    <li>
+                <% end %>
+				<a href="/register">席登録</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
