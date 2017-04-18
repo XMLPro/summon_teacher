@@ -1,2 +1,31 @@
-<h1>Top#index</h1>
-<p>Find me in app/views/top/index.html.erb</p>
+<div class="container">
+  <div id="seat_register_modal" class="modal fade" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="well" style="text-align: center; margin: 0; border-radius: 5px">
+          <h2>講師召喚システム</h2>
+          <p>KE302</p>
+          <%= form_tag member_register_path, id: 'seat_register', method: :post, remote: true, format: :json do %>
+              <%= text_field :seat, :num %>
+              <%= submit_tag '登録', disabled: false %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $("#seat_register").on("ajax:success", function(e, data){
+    if("error" in data){
+      alert(data["error"]);
+    }else if("success" in data){
+      alert(data["success"]);
+      $("#seat_register_modal").modal("hide");
+    }else{
+      alert("よく分からないエラーです");
+    }
+  });
+
+  $("#seat_register_modal").modal("show");
+</script>
