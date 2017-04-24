@@ -8,6 +8,6 @@ class SummonChannel < ApplicationCable::Channel
   end
 
   def summon(data)
-    ActionCable.server.broadcast "summon_channnel", seat_id: data['seat_id']
+    ActionCable.server.broadcast "summon_channnel", position: data['position']
   end
 end

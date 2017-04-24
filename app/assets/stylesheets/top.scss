@@ -1,3 +1,39 @@
 // Place all the styles related to the top controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.top-css {
+  .flex {
+    &-wrapper {
+      display: flex;
+    }
+
+    &-row {
+      flex-direction: row;
+      &-center {
+        justify-content: center;
+      }
+    }
+
+    &-column {
+      flex-direction: column;
+      &-center {
+        align-items: center;
+      }
+    }
+  }
+
+  .big-btn {
+    margin: 50px;
+    width: 200px;
+    height: 200px;
+  }
+
+  .btn-shadow {
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
