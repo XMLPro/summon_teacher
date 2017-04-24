@@ -37,20 +37,20 @@
         $("#seat_register_modal").modal("hide");
         $("#seat_id").text(data["seat_id"]);
 
-        $("#summon").off("click").on("click", function(e){
-          App.summon.summon(data["seat_id"]);
+        $("#summon").off("click").on("click", function(){
+          App.summon.summon(data["position"]);
         });
       }else{
         alert("よく分からないエラーです");
       }
     });
 
-    <% unless session['seat_id'] %>
-      $("#seat_register_modal").modal("show");
-    <% else %>
-      $("#summon").off("click").on("click", function(e){
-        App.summon.summon(<%= session['seat_id'] %>);
+    <% if session['seat_id'] %>
+      $("#summon").off("click").on("click", function(){
+        App.summon.summon("<%= @seat.try(:position) %>");
       });
+    <% else %>
+      $("#seat_register_modal").modal("show");
     <% end %>
   });
 </script>
