@@ -11,6 +11,6 @@
 </div>
 <script>
   function speak(){
-    App.summon.summon(<%= session['seat_id']%>);
+    App.summon.summon("<%= @seat.try(:position) %>");
   }
 </script> 
