@@ -19,8 +19,8 @@ class MemberController < ApplicationController
         @error = '席が存在しません'
         render json: {error: '席が存在しません'}
       else
-        session['seat_id'] = seat.id
-        render json: {success: '登録しました', seat_id: seat.id}
+        session['seat_id'] = seat.num
+        render json: {success: '登録しました', seat_id: seat.num, position: seat.position}
       end
     end
   end

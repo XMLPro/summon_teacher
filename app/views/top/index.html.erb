@@ -1,11 +1,23 @@
-<div class="container">
+<%= render partial: 'shared/header', locals: {title: 'ホーム'} %>
+
+<div class="container top-css">
+  <div class="flex-wrapper flex-row flex-row-center">
+    <div id="summon" class="btn btn-primary btn-shadow big-btn flex-wrapper flex-column flex-column-center flex-row-center">
+      <div class="h2">
+        講師召喚
+      </div>
+      <div id="seat_id" class="h2">
+        <%= session['seat_id'] or '未着席' %>
+      </div>
+    </div>
+  </div>
   <div id="seat_register_modal" class="modal fade" data-backdrop="static">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="well" style="text-align: center; margin: 0; border-radius: 5px">
           <h2>講師召喚システム</h2>
           <p>KE302</p>
-          <%= form_tag member_register_path, id: 'seat_register', method: :post, remote: true, format: :json do %>
+          <%= form_tag register_path, id: 'seat_register', method: :post, remote: true, format: :json do %>
               <%= text_field :seat, :num %>
               <%= submit_tag '登録', disabled: false %>
           <% end %>
@@ -16,16 +28,29 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
-  $("#seat_register").on("ajax:success", function(e, data){
-    if("error" in data){
-      alert(data["error"]);
-    }else if("success" in data){
-      alert(data["success"]);
-      $("#seat_register_modal").modal("hide");
-    }else{
-      alert("よく分からないエラーです");
-    }
-  });
+  $(function(){
+    $("#seat_register").on("ajax:success", function(e, data){
+      if("error" in data){
+        alert(data["error"]);
+      }else if("success" in data){
+        alert(data["success"]);
+        $("#seat_register_modal").modal("hide");
+        $("#seat_id").text(data["seat_id"]);
 
-  $("#seat_register_modal").modal("show");
+        $("#summon").off("click").on("click", function(){
+          App.summon.summon(data["position"]);
+        });
+      }else{
+        alert("よく分からないエラーです");
+      }
+    });
+
+    <% if session['seat_id'] %>
+      $("#summon").off("click").on("click", function(){
+        App.summon.summon("<%= @seat.try(:position) %>");
+      });
+    <% else %>
+      $("#seat_register_modal").modal("show");
+    <% end %>
+  });
 </script>
